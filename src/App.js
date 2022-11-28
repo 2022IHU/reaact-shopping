@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Main from './Component/Main';
+import Detail from './Component/Detail';
+import Shoes from './Component/Shoes';
+import Event from './Component/Event';
+import One from './Component/One';
+import Two from './Component/Two';
+import data from './Data';
+import { useState } from 'react';
 
 function App() {
+  const [shoes] = useState(data);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route path="shoes" element={<Shoes shoes={shoes} />} />
+          <Route path="detail/:id" element={<Detail shoes={shoes} />} />
+          <Route path="/event" element={<Event />}>
+            <Route path="one" element={<One />} />
+            <Route path="two" element={<Two />} />
+          </Route>
+        </Route>
+      </Routes>
+    </>
   );
 }
 
