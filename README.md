@@ -18,7 +18,10 @@ let navigate = useNavigate();
 <태그 onClick={()=>{navigate(-1)}}>작명</태그>
 //뒤로 한 페이지 이동
 
-useParams
+useEffect();
+//html 렌더링 후 동작하기 때문에 서버에서 데이터를 가져오거나 연산시 사용
+
+useParams();
 ```
 
 ## Route 문법
@@ -27,3 +30,5 @@ useParams
 <Route path="*" element={<div>404 notfound</div>} />
 // not fount 페이지(* = 오타를 포함한 모든 잘못된 경로로 접근시 보여줄 페이지를 지정)
 ```
+
+## AJAX

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Main from './Component/Main';
 import Detail from './Component/Detail';
-import Shoes from './Component/Shoes';
+import { Shoes } from './Component/Shoes';
 import Event from './Component/Event';
 import One from './Component/One';
 import Two from './Component/Two';
@@ -9,11 +9,12 @@ import data from './Data';
 import { useState } from 'react';
 
 function App() {
-  const [shoes] = useState(data);
+  const [shoes, setShoes] = useState(data);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Main />}>
+        <Route path="/" element={<Main shoes={shoes} setShoes={setShoes} />}>
           <Route path="shoes" element={<Shoes shoes={shoes} />} />
           <Route path="detail/:id" element={<Detail shoes={shoes} />} />
           <Route path="/event" element={<Event />}>
