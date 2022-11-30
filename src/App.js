@@ -7,6 +7,7 @@ import One from './Component/One';
 import Two from './Component/Two';
 import data from './Data';
 import { useState } from 'react';
+import Cart from './Component/Cart';
 
 function App() {
   const [shoes, setShoes] = useState(data);
@@ -21,6 +22,7 @@ function App() {
             <Route path="one" element={<One />} />
             <Route path="two" element={<Two />} />
           </Route>
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </>

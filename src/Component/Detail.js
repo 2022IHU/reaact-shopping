@@ -3,17 +3,30 @@ import { useEffect, useState } from 'react';
 import { Col, Container, Row, Nav } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import '../App.scss';
+import styles from '../CssModule/Detail.module.scss';
 
 export default function Detail(props) {
   // let [modal, setModal] = useState(true);
   // let [num, setNum] = useState('');
   let [탭, 탭변경] = useState(0);
+  const [fadetap, setFadetap] = useState('');
+  const [fadetap1, setFadetap1] = useState('');
 
   let { id } = useParams();
   let findshoes = props.shoes.find(function (x) {
     return x.id == id;
   });
   const number = Number(id);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFadetap1(`${styles.end2}`);
+    }, 100);
+
+    return () => {
+      setFadetap1('');
+    };
+  }, []);
 
   // useEffect(() => {
   //   setTimeout(() => {
@@ -27,7 +40,7 @@ export default function Detail(props) {
   // }, [num]);
 
   return (
-    <Container className="Container">
+    <Container className={`${styles.start2} ${fadetap1}`}>
       {/* {modal == true ? (
         <div className="alert alert-warning">2초 이내 구매시 할인</div>
       ) : null} */}
@@ -81,11 +94,25 @@ export default function Detail(props) {
         </Nav.Item>
       </Nav>
 
-      <TabContent 탭={탭} />
+      <TabContent
+        탭={탭}
+        fadetap={fadetap}
+        setFadetap={setFadetap}
+        shoes={props.shoes}
+      />
     </Container>
   );
 }
-function TabContent({ 탭 }) {
+function TabContent({ 탭, fadetap, setFadetap, shoes }) {
+  useEffect(() => {
+    setTimeout(() => {
+      setFadetap(`${styles.end1}`);
+    }, 100);
+
+    return () => {
+      setFadetap('');
+    };
+  }, [탭]);
   // if (props.탭 == 0) {
   //   return <div className="tap">내용0</div>;
   // } else if (props.탭 == 1) {
@@ -93,5 +120,11 @@ function TabContent({ 탭 }) {
   // } else if (props.탭 == 2) {
   //   return <div className="tap">내용2</div>;
   // }
-  return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][탭];
+  return (
+    <div className={`${styles.start1} ${fadetap}`}>
+      <div className="tap">
+        {[<div>{shoes[0].title}</div>, <div>내용1</div>, <div>내용2</div>][탭]}
+      </div>
+    </div>
+  );
 }
