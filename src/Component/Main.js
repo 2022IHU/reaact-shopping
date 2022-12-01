@@ -47,7 +47,6 @@ export default function Main({ shoes, setShoes }) {
       </Navbar>
       <div className="main-bg"></div>
       <Outlet></Outlet>
-      <ShoesBtn shoes={shoes} setShoes={setShoes} />
     </div>
   );
 }

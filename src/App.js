@@ -8,6 +8,7 @@ import Two from './Component/Two';
 import data from './Data';
 import { useState } from 'react';
 import Cart from './Component/Cart';
+import ShoesBtn from './Component/ShoesBtn';
 
 function App() {
   const [shoes, setShoes] = useState(data);
@@ -16,7 +17,15 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Main shoes={shoes} setShoes={setShoes} />}>
-          <Route path="shoes" element={<Shoes shoes={shoes} />} />
+          <Route
+            path="shoes"
+            element={
+              <>
+                <Shoes shoes={shoes} />
+                <ShoesBtn shoes={shoes} setShoes={setShoes} />
+              </>
+            }
+          />
           <Route path="detail/:id" element={<Detail shoes={shoes} />} />
           <Route path="/event" element={<Event />}>
             <Route path="one" element={<One />} />

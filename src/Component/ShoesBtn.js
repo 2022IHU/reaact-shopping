@@ -5,7 +5,6 @@ import '../App.scss';
 export default function ShoesBtn({ shoes, setShoes }) {
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(null);
-  const [btnhide, setbtnhide] = useState(true);
 
   return (
     <div className="shoescontainer">
