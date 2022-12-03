@@ -3,7 +3,6 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate, Outlet } from 'react-router-dom';
 import '../img/bg.png';
 import '../App.scss';
-import ShoesBtn from './ShoesBtn';
 
 export default function Main({ shoes, setShoes }) {
   let navigate = useNavigate();
@@ -41,6 +40,13 @@ export default function Main({ shoes, setShoes }) {
               }}
             >
               이벤트페이지
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate('/cart');
+              }}
+            >
+              장바구니
             </Nav.Link>
           </Nav>
         </Container>

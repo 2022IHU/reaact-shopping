@@ -1,6 +1,5 @@
 /* eslint-disable eqeqeq */
 import { Col, Row } from 'react-bootstrap';
-import ShoesBtn from './ShoesBtn';
 
 export function Shoes({ shoes, setShoes }) {
   return (

@@ -4,6 +4,8 @@ import { Col, Container, Row, Nav } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import '../App.scss';
 import styles from '../CssModule/Detail.module.scss';
+import { addItem } from '../Store';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Detail(props) {
   // let [modal, setModal] = useState(true);
@@ -11,6 +13,8 @@ export default function Detail(props) {
   let [탭, 탭변경] = useState(0);
   const [fadetap, setFadetap] = useState('');
   const [fadetap1, setFadetap1] = useState('');
+  let dispatch = useDispatch();
+  let state = useSelector(state => state);
 
   let { id } = useParams();
   let findshoes = props.shoes.find(function (x) {
@@ -51,17 +55,22 @@ export default function Detail(props) {
 
       <Row>
         <Col>
-          <img
-            src={`https://codingapple1.github.io/shop/shoes${number + 1}.jpg`}
-            alt="shoes"
-            width="80%"
-          />
+          <img src={`https://codingapple1.github.io/shop/shoes${number + 1}.jpg`} alt="shoes" width="80%" />
         </Col>
         <Col>
           <h4 className="pt-5">{findshoes.title}</h4>
           <p>{findshoes.content}</p>
           <p>{findshoes.price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              let cartcopy = [...state.cart, ...props.shoes];
+              console.log(cartcopy);
+              dispatch(addItem({ id: cartcopy.content, name: `${cartcopy.name}`, count: 2 }));
+            }}
+          >
+            주문하기
+          </button>
         </Col>
       </Row>
       <Nav variant="tabs" defaultActiveKey="link0">
@@ -94,12 +103,7 @@ export default function Detail(props) {
         </Nav.Item>
       </Nav>
 
-      <TabContent
-        탭={탭}
-        fadetap={fadetap}
-        setFadetap={setFadetap}
-        shoes={props.shoes}
-      />
+      <TabContent 탭={탭} fadetap={fadetap} setFadetap={setFadetap} shoes={props.shoes} />
     </Container>
   );
 }
@@ -122,9 +126,7 @@ function TabContent({ 탭, fadetap, setFadetap, shoes }) {
   // }
   return (
     <div className={`${styles.start1} ${fadetap}`}>
-      <div className="tap">
-        {[<div>{shoes[0].title}</div>, <div>내용1</div>, <div>내용2</div>][탭]}
-      </div>
+      <div className="tap">{[<div>{shoes[0].title}</div>, <div>내용1</div>, <div>내용2</div>][탭]}</div>
     </div>
   );
 }
