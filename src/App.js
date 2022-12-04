@@ -6,11 +6,15 @@ import Event from './Component/Event';
 import One from './Component/One';
 import Two from './Component/Two';
 import data from './Data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cart from './Component/Cart';
 import ShoesBtn from './Component/ShoesBtn';
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem('watched', []);
+  }, []);
+
   const [shoes, setShoes] = useState(data);
 
   return (

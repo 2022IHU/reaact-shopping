@@ -64,9 +64,7 @@ export default function Detail(props) {
           <button
             className="btn btn-danger"
             onClick={() => {
-              let cartcopy = [...state.cart, ...props.shoes];
-              console.log(cartcopy);
-              dispatch(addItem({ id: cartcopy.content, name: `${cartcopy.name}`, count: 2 }));
+              dispatch(addItem({ id: 0, name: `${findshoes.title}`, count: 0 }));
             }}
           >
             주문하기
