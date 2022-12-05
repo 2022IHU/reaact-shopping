@@ -1,7 +1,7 @@
 import { Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { increase1 } from '../store/userSlice';
-import { addCount } from '../Store.js';
+import { addCount, minusCount, deleteCount } from '../Store.js';
 
 export default function Cart() {
   let state = useSelector(state => state);
@@ -41,6 +41,20 @@ export default function Cart() {
                   }}
                 >
                   +
+                </button>
+                <button
+                  onClick={() => {
+                    dispatch(minusCount(state.cart[i].id));
+                  }}
+                >
+                  -
+                </button>
+                <button
+                  onClick={e => {
+                    dispatch(deleteCount(e.target.parentElement));
+                  }}
+                >
+                  삭제
                 </button>
               </td>
             </tr>

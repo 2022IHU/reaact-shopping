@@ -4,24 +4,32 @@ import user from './store/userSlice.js';
 
 export let cart = createSlice({
   name: 'cart',
-  initialState: [
-    { id: 0, name: 'White and Black', count: 2 },
-    { id: 1, name: 'Grey Yordan', count: 1 }
-  ],
+  initialState: [],
   reducers: {
     addCount(state, action) {
-      let 번호 = state.findIndex(a => {
-        return a.id == action.payload;
-      });
+      let 번호 = state.findIndex(a => a.id === action.payload);
       state[번호].count++;
     },
+    minusCount(state, action) {
+      let 번호 = state.findIndex(a => a.id === action.payload);
+      if (state[번호].count > 0) state[번호].count--;
+    },
     addItem(state, action) {
-      state.push(action.payload);
+      let 번호 = state.findIndex(a => a.id === action.payload);
+      console.log(번호);
+      if (번호 >= 0) {
+        state[번호].count++;
+      } else {
+        state.push(action.payload);
+      }
+    },
+    deleteCount(state, action) {
+      action.payload.remove();
     }
   }
 });
 
-export let { addCount, addItem } = cart.actions;
+export let { addCount, minusCount, addItem, deleteCount } = cart.actions;
 
 export default configureStore({
   reducer: {

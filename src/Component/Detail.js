@@ -15,6 +15,7 @@ export default function Detail(props) {
   const [fadetap1, setFadetap1] = useState('');
   let dispatch = useDispatch();
   let state = useSelector(state => state);
+  console.log(state.cart);
 
   let { id } = useParams();
   let findshoes = props.shoes.find(function (x) {
@@ -64,7 +65,7 @@ export default function Detail(props) {
           <button
             className="btn btn-danger"
             onClick={() => {
-              dispatch(addItem({ id: 0, name: `${findshoes.title}`, count: 0 }));
+              dispatch(addItem({ id: number, name: `${findshoes.title}`, count: 0 }));
             }}
           >
             주문하기
