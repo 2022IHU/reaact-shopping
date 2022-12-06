@@ -16,7 +16,6 @@ export let cart = createSlice({
     },
     addItem(state, action) {
       let 번호 = state.findIndex(a => a.id === action.payload);
-      console.log(번호);
       if (번호 >= 0) {
         state[번호].count++;
       } else {
@@ -24,7 +23,9 @@ export let cart = createSlice({
       }
     },
     deleteCount(state, action) {
-      action.payload.remove();
+      let 번호 = state.findIndex(a => a.id === action.payload);
+      state.splice(번호);
+      console.log(번호);
     }
   }
 });

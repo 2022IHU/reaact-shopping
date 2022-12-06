@@ -50,8 +50,9 @@ export default function Cart() {
                   -
                 </button>
                 <button
-                  onClick={e => {
-                    dispatch(deleteCount(e.target.parentElement));
+                  onClick={() => {
+                    dispatch(deleteCount(state.cart[i].id));
+                    console.log(state.cart);
                   }}
                 >
                   삭제
