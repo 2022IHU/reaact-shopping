@@ -24,6 +24,15 @@ export default function Detail(props) {
   const number = Number(id);
 
   useEffect(() => {
+    let detailid = localStorage.getItem('watched');
+    detailid = JSON.parse(detailid);
+    detailid.push(findshoes.id);
+    detailid = new Set(detailid); //중복제거 배열함수
+    detailid = Array.from(detailid); //중복제거한 함수를 다시 호출
+    localStorage.setItem('watched', JSON.stringify(detailid));
+  }, []);
+
+  useEffect(() => {
     setTimeout(() => {
       setFadetap1(`${styles.end2}`);
     }, 100);

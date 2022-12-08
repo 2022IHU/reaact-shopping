@@ -12,7 +12,7 @@ import ShoesBtn from './Component/ShoesBtn';
 
 function App() {
   useEffect(() => {
-    localStorage.setItem('watched', []);
+    localStorage.setItem('watched', JSON.stringify([]));
   }, []);
 
   const [shoes, setShoes] = useState(data);
