@@ -31,4 +31,7 @@ useParams();
 // not fount 페이지(* = 오타를 포함한 모든 잘못된 경로로 접근시 보여줄 페이지를 지정)
 ```
 
-## AJAX
+## memo, useMemo
+
+- memo : props가 변할 때만 재렌더링해줌
+- useMemo :

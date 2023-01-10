@@ -29,13 +29,6 @@ export default function Main({ shoes, setShoes }) {
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                navigate('/detail');
-              }}
-            >
-              상세페이지
-            </Nav.Link>
-            <Nav.Link
-              onClick={() => {
                 navigate('/event');
               }}
             >
